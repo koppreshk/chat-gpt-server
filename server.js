@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+require('dotenv').config();
 
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -21,11 +22,10 @@ app.post("/chat", async (req, res) => {
 
   // Generate a response with ChatGPT
   const completion = await openai.createCompletion({
-    model: "text-davinci-003",
+    model: "text-davinci-002",
     prompt: prompt,
   });
-  console.log(completion.data.choices);
-  res.send(completion.data.choices);
+  res.send(completion.data.choices[0].text);
 });
 
 // Start the server
