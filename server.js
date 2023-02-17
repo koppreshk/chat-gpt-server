@@ -28,7 +28,7 @@ app.post("/chat", async (req, res) => {
   res.send(completion.data.choices[0].text);
 });
 
-app.use('/', (req, res) => res.send('success'));
+app.use('/', (req, res) => res.send('success, hi sid'));
 
 // Start the server
 const port = 8080;
